@@ -43,7 +43,7 @@ class Main extends React.Component{
           <br />
           Today is {Utils.formatToWD(Utils.now(), this.state.date)}
           <br />
-          <EventList events={this.state.events}/>
+          <EventList events={this.state.events} firstDate={this.state.date}/>
           <AddEvent handleSubmit={this.handleSubmit}/>
         </div>
       )

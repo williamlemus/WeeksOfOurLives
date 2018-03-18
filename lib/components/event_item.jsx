@@ -1,8 +1,8 @@
 import React from 'react';
-
+import {formatToWD} from '../utils/utils'
 const EventItem = (props) => {
   return(<li>
-    {props.item.date + ' ' + props.item.title} 
+    {formatToWD(props.item.date, props.firstDate) + ': ' + props.item.title}
     </li>)
 }
 

@@ -12,6 +12,7 @@ class EventList extends React.Component{
         return(
           <EventItem key={e.id}
           item={e}
+          firstDate={this.props.firstDate}
           />
           );
         }
