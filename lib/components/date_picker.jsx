@@ -8,12 +8,12 @@ class DatePicker extends React.Component{
   }
 
   handleChange(e){
-    this.props.onDateChange(e.target.value);
+    //this.props.onDateChange(e.target.value);
   }
 
   render() {
     return(
-      <input type="date" onChange={this.handleChange}/>
+      <input type="date" name={this.props.name} onChange={this.props.onChange}/>
     )
   }
 

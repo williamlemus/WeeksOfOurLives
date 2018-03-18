@@ -1,44 +1,39 @@
 import React from 'react';
 import DatePicker from './components/date_picker';
+import AddEvent from './components/add_event';
+import EventList from './components/event_list';
+import * as Utils from './utils/utils';
 
-const MS_IN_DAYS = 86400000;
 
 
 class Main extends React.Component{
   constructor(props){
       super(props);
       this.handleDateChange = this.handleDateChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
       this.state = {
         date: '',
         events: []
       };
   }
 
-  handleDateChange(date){
-    this.setState({date: date});
+  handleDateChange(e){
+    this.setState({date: e.target.value});
   }
 
-  now(){
-    const dateTime = new Date();
-    return `${dateTime.getFullYear()}-${dateTime.getMonth() + 1}-${dateTime.getDate()}`;
+  handleSubmit(e, title, date){
+    e.preventDefault();
+    let events = this.state.events;
+    events.push({id: events.length, title: title, date: date});
+    this.setState({events: events});
   }
-
-  totalDays(date){
-    return Math.floor((new Date(date) - new Date(this.state.date))/MS_IN_DAYS);
-  }
-
-  formatToWD(date){
-    const days = this.totalDays(date);
-    return `W${Math.floor(1 + days/7)}D${1 + days % 7}`;
-  }
-
 
   render(){
     if(this.state.date === ''){
       return(
         <div>
         Tell us the day that changed your life
-        <DatePicker onDateChange={this.handleDateChange}/>
+        <DatePicker name='initial' onChange={this.handleDateChange}/>
         </div>
       );
     } else {
@@ -46,7 +41,10 @@ class Main extends React.Component{
         <div>
           W1D1 was {this.state.date}
           <br />
-          Today is {this.formatToWD(this.now())}
+          Today is {Utils.formatToWD(Utils.now(), this.state.date)}
+          <br />
+          <EventList events={this.state.events}/>
+          <AddEvent handleSubmit={this.handleSubmit}/>
         </div>
       )
     }
