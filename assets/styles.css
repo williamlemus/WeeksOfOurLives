@@ -1,4 +1,38 @@
+input {
+  font-family: Helvetica, Arial, sans-serif;
+  text-indent: 4px;
+  margin:  5px;
+  border: solid 2px orange;
+  background-color: transparent;
+}
+
+input:hover{
+  border: solid 2px skyblue;
+}
+
 body {
   background: linear-gradient(to bottom right, #f74504, #f4cd41);
   height: 100vh;
+  margin: 0 auto;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+.add-event-form {
+  display: flex;
+}
+
+input {
+  border-radius: 5%;
+}
+
+input[type='submit'] {
+  text-indent: 0;
+}
+
+input[type='submit']:hover {
+  cursor: pointer;
 }

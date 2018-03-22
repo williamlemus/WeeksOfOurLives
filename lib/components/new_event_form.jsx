@@ -28,7 +28,7 @@ class NewEventForm extends React.Component {
 
   render(){
     return(
-      <form onSubmit={this.submitDate}
+      <form className="add-event-form" onSubmit={this.submitDate}
                 onChange={this.handleChange}>
         <InputField name="eventName" value={this.state.eventName}/>
         <DatePicker name="eventDate" onChange={this.handleChange} value={this.state.eventDate}/>

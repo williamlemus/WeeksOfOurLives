@@ -3,7 +3,7 @@ import React from 'react';
 
 const SubmitButton = (props) => {
   return(
-    <input type='submit'></input>
+    <input type='submit' value='+'></input>
   )
 }
 
