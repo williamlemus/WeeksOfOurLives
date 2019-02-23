@@ -1,6 +1,6 @@
 var path = require('path');
 
-var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+var TerserPlugin = require('terser-webpack-plugin');
 var webpack = require("webpack");
 
 var plugins = []; // if using any plugins for both dev and production
@@ -11,8 +11,7 @@ var prodPlugins = [
     'process.env': {
       'NODE_ENV': JSON.stringify('production')
     }
-  }),
-  new UglifyJSPlugin()
+  })
 ];
 
 plugins = plugins.concat(
@@ -41,5 +40,8 @@ module.exports = {
   devtool: 'source-map',
   resolve: {
     extensions: ['.js', ".jsx", '*']
+  },
+  optimization: {
+    minimizer: [new TerserPlugin()]
   }
 };
