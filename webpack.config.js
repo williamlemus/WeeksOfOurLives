@@ -30,9 +30,11 @@ module.exports = {
       {
         test: [/\.js?$/, /\.jsx?$/],
         exclude: /(node_modules)/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['env', 'react']
+        use: {
+          loader: 'babel-loader',
+          query: {
+            "presets": ["@babel/env", "@babel/react"]
+          }
         }
       }
     ]

@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from "lodash";
 import DatePicker from './components/date_picker';
 import AddEvent from './components/add_event';
 import EventList from './components/event_list';
@@ -13,7 +14,8 @@ class Main extends React.Component{
       this.handleSubmit = this.handleSubmit.bind(this);
       this.state = {
         date: '',
-        events: []
+        events: [],
+        errorMessage: ""
       };
   }
 
@@ -23,17 +25,22 @@ class Main extends React.Component{
 
   handleSubmit(e, title, date){
     e.preventDefault();
-    let events = this.state.events;
-    events.push({id: events.length, title: title, date: date});
-    this.setState({events: events});
+    this.setState({ errorMessage: "" });
+    let events = _.cloneDeep(this.state.events);
+    if (title && date) {
+      events.push({ id: events.length, title, date });
+      this.setState({ events });
+    } else {
+      this.setState({ errorMessage: "Required field was left blank" });
+    }
   }
 
   render(){
     if(this.state.date === ''){
       return(
         <div>
-        Tell us the day that changed your life
-        <DatePicker name='initial' onChange={this.handleDateChange}/>
+          Tell us the day that changed your life
+          <DatePicker name='initial' onChange={this.handleDateChange}/>
         </div>
       );
     } else {
@@ -43,6 +50,14 @@ class Main extends React.Component{
           <br />
           Today is {Utils.formatToWD(Utils.now(), this.state.date)}
           <br />
+          {this.state.errorMessage && <div> Error: {this.state.errorMessage} </div> }
+          <br />
+          {
+            this.state.events && this.state.events.length > 0 &&
+              <div>
+                Important Events:
+              </div>
+          }
           <EventList events={this.state.events} firstDate={this.state.date}/>
           <AddEvent handleSubmit={this.handleSubmit}/>
         </div>
