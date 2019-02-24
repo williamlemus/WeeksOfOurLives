@@ -23,7 +23,9 @@ class NewEventForm extends React.Component {
   }
 
   submitDate(e){
-    this.props.handleSubmit(e, this.state.eventName, this.state.eventDate);
+    if (this.props.handleSubmit(e, this.state.eventName, this.state.eventDate)) {
+      this.setState({ eventName: '', eventDate: '' });
+    }
   }
 
   render(){
@@ -31,7 +33,7 @@ class NewEventForm extends React.Component {
       <form className="add-event-form" onSubmit={this.submitDate}
                 onChange={this.handleChange}>
         <InputField name="eventName" value={this.state.eventName}/>
-        <DatePicker name="eventDate" onChange={this.handleChange} value={this.state.eventDate}/>
+        <DatePicker name="eventDate" value={this.state.eventDate}/>
         <SubmitButton />
       </form>
     );

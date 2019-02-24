@@ -30,6 +30,7 @@ class Main extends React.Component{
     if (title && date) {
       events.push({ id: events.length, title, date });
       this.setState({ events });
+      return true;
     } else {
       this.setState({ errorMessage: "Required field was left blank" });
     }
