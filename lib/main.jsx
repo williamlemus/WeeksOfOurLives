@@ -39,14 +39,14 @@ class Main extends React.Component{
   render(){
     if(this.state.date === ''){
       return(
-        <div>
+        <div id="content">
           Tell us the day that changed your life
           <DatePicker name='initial' onChange={this.handleDateChange}/>
         </div>
       );
     } else {
       return(
-        <div>
+        <div id="content">
           W1D1 was {this.state.date}
           <br />
           Today is {Utils.formatToWD(Utils.now(), this.state.date)}
