@@ -41,7 +41,10 @@ class Main extends React.Component{
       return(
         <div id="content">
           Tell us the day that changed your life
-          <DatePicker name='initial' onChange={this.handleDateChange}/>
+          <DatePicker
+           name='initial'
+           onChange={this.handleDateChange}
+          />
         </div>
       );
     } else {
